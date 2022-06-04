@@ -1,4 +1,5 @@
 from django.db import models
+from s3direct.fields import S3DirectField
 
 class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
@@ -7,7 +8,7 @@ class Podcast(models.Model):
 	ner = models.ManyToManyField('NerEntity')
 	topics = models.ManyToManyField('Topic')
 	podcast_url = models.URLField()
-	podcast_file = models.FileField(upload_to='')
+	podcast_file = S3DirectField(dest='podcasts', blank=True)
 	duration = models.DurationField()
 
 	def __str__(self):
@@ -23,6 +24,7 @@ class NerEntity(models.Model):
 
 class Topic(models.Model):
 	topic_name = models.CharField(max_length=155, blank=False, null=False)
+	time_step = models.DurationField(blank=True, null=True)
 
 	def __str__(self):
 		return self.topic_name
