@@ -1,5 +1,7 @@
 from django.db import models
 from s3direct.fields import S3DirectField
+import datetime
+
 
 class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
@@ -7,9 +9,11 @@ class Podcast(models.Model):
 	summary = models.TextField()
 	ner = models.ManyToManyField('NerEntity')
 	topics = models.ManyToManyField('Topic')
+	language = models.ForeignKey('Language')
 	podcast_url = models.URLField()
 	podcast_file = S3DirectField(dest='podcasts', blank=True)
 	duration = models.DurationField()
+	created = models.DateTimeField(default=datetime.datetime.now())
 
 	def __str__(self):
 		return self.title
