@@ -6,10 +6,11 @@ import datetime
 class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
 	title_en = models.CharField(max_length=155, blank=False, null=False)
+	image = models.ImageField(upload_to='')
 	summary = models.TextField()
 	ner = models.ManyToManyField('NerEntity')
 	topics = models.ManyToManyField('Topic')
-	language = models.ForeignKey('Language')
+	language = models.ForeignKey('Language', on_delete=models.CASCADE)
 	podcast_url = models.URLField()
 	podcast_file = S3DirectField(dest='podcasts', blank=True)
 	duration = models.DurationField()
@@ -28,7 +29,8 @@ class NerEntity(models.Model):
 
 class Topic(models.Model):
 	topic_name = models.CharField(max_length=155, blank=False, null=False)
-	time_step = models.DurationField(blank=True, null=True)
+	time_from = models.DurationField(blank=True, null=True)
+	time_to = models.DurationField(blank=True, null=True)
 
 	def __str__(self):
 		return self.topic_name
@@ -48,5 +50,3 @@ class Feedback(models.Model):
 
 	def __str__(self):
 		return "Feedback for: "+self.podcast.title
-
-
