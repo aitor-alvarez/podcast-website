@@ -12,6 +12,7 @@
       <div class="row">
           <div class="col-lg-12">
           <h2 class="center">Start searching for podcasts to advance your language learning skills</h2>
+
               </div>
       </div>
       <div class="row">
@@ -19,7 +20,7 @@
 <div class="form-group">
             <form method="get" action="/search/" autocomplete="chrome-off">
       <div class="input-group">
-          <input type="text" class="form-control AutoComplete" type="text" autocomplete="off" id=id_q" name="q" placeholder="Search...">
+          <input type="text" class="form-control AutoComplete" type="text" autocomplete="off" id=id_q" name="q" placeholder="Search ...">
                 {% for field in form %}
               {% if field.name == 'language' %}
           {{ field }}
