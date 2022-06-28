@@ -89,6 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #header {
   height: 80px;
+ box-shadow: 0 2px 6px 0 rgb(0 0 0 / 12%), inset 0 -1px 0 0 #dadce0;
   z-index: 997;
   transition: all 0.5s;
 }
@@ -535,7 +536,7 @@ section {
 # Clients
 --------------------------------------------------------------*/
 .clients {
-  background: #a1b8c4;
+  background: #e0e7eb;
   padding: 10px 0;
   text-align: center;
 }
