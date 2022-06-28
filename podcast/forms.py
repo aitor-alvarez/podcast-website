@@ -29,7 +29,7 @@ class PodcastSearchForm(SearchForm):
 
 			if self.cleaned_data['q'] =='' and self.cleaned_data['language']:
 				sqs = self.searchqueryset.all()
-			elif self.cleaned_data['q'] =='' and self.cleaned_data['content_area']:
+			elif self.cleaned_data['q'] =='' and self.cleaned_data['ner_tag']:
 				sqs = self.searchqueryset.all()
 			else:
 				sqs = super(PodcastSearchForm, self).search()
