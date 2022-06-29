@@ -7,3 +7,5 @@ venv/
 *.sqlite3
 media/
 *.DS_Store
+podcast_website/whoosh_index/
+*.toc
