@@ -8,6 +8,7 @@ from podcast_website import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='podcast/home.html'), name='home'),
+    path('search/', PodcastSearch.as_view()),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
