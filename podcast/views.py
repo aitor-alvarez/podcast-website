@@ -8,7 +8,7 @@ from collections import Counter
 class PodcastSearch(SearchView):
 	form_class = PodcastSearchForm
 	template = 'search/search.html'
-	paginate_by = 5
+	paginate_by = 10
 	context_object_name = 'object_list'
 
 

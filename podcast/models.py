@@ -1,18 +1,17 @@
 from django.db import models
-from s3direct.fields import S3DirectField
 import datetime
 
 
 class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
 	title_en = models.CharField(max_length=155, blank=False, null=False)
-	image = models.ImageField(upload_to='')
-	summary = models.TextField()
-	ner = models.ManyToManyField('NerEntity')
-	topics = models.ManyToManyField('Topic')
+	image = models.ImageField(upload_to='img', blank=True)
+	summary = models.TextField(blank=True)
+	ner = models.ManyToManyField('NerEntity', blank=True)
+	topics = models.ManyToManyField('Topic', blank=True)
 	language = models.ForeignKey('Language', on_delete=models.CASCADE)
-	podcast_url = models.URLField()
-	podcast_file = S3DirectField(dest='podcasts', blank=True)
+	podcast_url = models.URLField(blank=True)
+	podcast_file = models.FileField(upload_to='podcast', blank=True)
 	duration = models.DurationField()
 	created = models.DateTimeField(default=datetime.datetime.now())
 
