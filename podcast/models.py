@@ -12,7 +12,8 @@ class Podcast(models.Model):
 	language = models.ForeignKey('Language', on_delete=models.CASCADE)
 	podcast_url = models.URLField(blank=True)
 	podcast_file = models.FileField(upload_to='podcast', blank=True)
-	duration = models.DurationField()
+	duration = models.DurationField(blank=True)
+	sophistication = models.DecimalField(blank=True, decimal_places=2, max_digits=4)
 	created = models.DateTimeField(default=datetime.datetime.now())
 
 	def __str__(self):

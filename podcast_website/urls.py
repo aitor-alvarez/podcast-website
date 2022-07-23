@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='podcast/home.html'), name='home'),
     path('search/', PodcastSearch.as_view()),
-    path('s3direct/', include('s3direct.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
