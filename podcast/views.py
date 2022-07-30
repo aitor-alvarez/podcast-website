@@ -3,6 +3,9 @@ from .models import *
 from haystack.generic_views import SearchView
 from .forms import PodcastSearchForm
 from collections import Counter
+from haystack.query import SearchQuerySet
+import json
+from django.http import HttpResponse
 
 
 class PodcastSearch(SearchView):
@@ -31,6 +34,20 @@ class PodcastSearch(SearchView):
 		context.update({'topics': topics})
 
 		return context
+
+
+def autocomplete(request):
+	sug1 = []
+	sqs1 = SearchQuerySet().models(Podcast).autocomplete(title=request.GET.get('q', ''))[:5]
+	sqs2 = SearchQuerySet().models(Podcast).autocomplete(tags=request.GET.get('q', ''))[:5]
+	for result in sqs2:
+		for tag in result.tags.split(','):
+			sug1.append(tag)
+	sug2 = [result.title for result in sqs1]
+	suggestions = sug1 + sug2
+	the_data = json.dumps({'results': suggestions})
+	return HttpResponse(the_data, content_type='application/json')
+
 
 
 
