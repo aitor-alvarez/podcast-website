@@ -6,6 +6,18 @@ from collections import Counter
 from haystack.query import SearchQuerySet
 import json
 from django.http import HttpResponse
+from django.views.generic import DetailView
+
+
+class PodcastView(DetailView):
+	model = Podcast
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(PodcastView, self).get_context_data(*args, **kwargs)
+		tags =[tag.id for tag in self.object.tags.all()]
+		related = Podcast.objects.filter(tags__in=tags).distinct().exclude(id=self.object.id)
+		context['related'] = related
+		return context
 
 
 class PodcastSearch(SearchView):
@@ -18,20 +30,7 @@ class PodcastSearch(SearchView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(PodcastSearch, self).get_context_data(*args, **kwargs)
-		ner_tags = [(s.object.ner, s.object.content_area.id)  for s in context['object_list']]
-		ner_tags = Counter(ner_tags)
-		ner_tags = [(n, ner_tags[n]) for n in ner_tags ]
-		context.update({'ner_tags': ner_tags})
 
-		languages = [(s.object.language, s.object.language.id) for s in context['object_list']]
-		languages = Counter(languages)
-		languages = [(l, languages[l]) for l in languages]
-		context.update({'languages': languages})
-
-		topics = [(s.object.get_content_type_display(), s.object.content_type) for s in context['object_list']]
-		topics = Counter(topics)
-		topics = [(t, topics[t]) for t in topics]
-		context.update({'topics': topics})
 
 		return context
 
