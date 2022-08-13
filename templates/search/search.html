@@ -6,7 +6,10 @@
 {% block content %}
 
 <!-- ======= Hero Section ======= -->
+
   <section id="hero" class=" search d-flex align-items-center">
+
+
 
     <div class="container">
       <div class="row">
@@ -42,16 +45,19 @@
       <div class="container">
 {% if  page_obj.object_list %}
 
+
               <br>
+
 
             <h3>Results</h3>
             <hr>
             <br>
             <br>
+
             {% for result in page_obj.object_list %}
 
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" >
-                    <div class="image" style="background-image: url('/static/media/{{ result.object.image }}');"></div>
+                    <div class="image" style="background-image: url('/media/{{ result.object.image }}');"></div>
                     <div class="text">
 
                      <h3 class="font-weight-light"><a href="/podcast/{{ result.object.pk }}">{{ result.object.title }}</a></h3>
