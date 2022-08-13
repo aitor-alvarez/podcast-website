@@ -14,8 +14,8 @@ class PodcastView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(PodcastView, self).get_context_data(*args, **kwargs)
-		tags =[tag.id for tag in self.object.tags.all()]
-		related = Podcast.objects.filter(tags__in=tags).distinct().exclude(id=self.object.id)
+		tags =[tag.id for tag in self.object.ner.all()]
+		related = Podcast.objects.filter(ner__podcast__in=tags).distinct().exclude(id=self.object.id)
 		context['related'] = related
 		return context
 
@@ -30,7 +30,6 @@ class PodcastSearch(SearchView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(PodcastSearch, self).get_context_data(*args, **kwargs)
-
 
 		return context
 
