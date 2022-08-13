@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+  <section id="hero2" class="d-flex align-items-center">
 
     <div class="container">
       <div class="row">
@@ -41,55 +41,17 @@
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
 {% if  page_obj.object_list %}
-              <!--
-              <a class="btn-sm btn-info" href="#" role="button" id="show_filters">Show filters</a>
-              <br>
-              -->
 
-           <div id="filters">
-              <h3>Filters</h3>
-              <br>
-
-          <div class="row">
-            <div class="col-sm">
-            <h5>Content area</h5>
-              {% for cat in categories %}
-                  <input type="checkbox" id="{{ cat.0.0 }}" name="{{ cat.0.0 }}" value="{{ cat.0.1 }}">
-                  <label for="{{ cat.0 }}"> {{ cat.0.0 }} ({{ cat.1 }})</label><br>
-              {% endfor %}
-            </div>
-
-              <div class="col-sm">
-            <h5>Language</h5>
-              {% for cat in languages %}
-                  <input type="checkbox" id="{{ cat.0.0 }}" name="{{ cat.0.0 }}" value="{{ cat.0.1 }}">
-                  <label for="{{ cat.0 }}"> {{ cat.0.0 }} ({{ cat.1 }})</label><br>
-
-              {% endfor %}
-            </div>
-
-              <div class="col-sm">
-            <h5>Content type</h5>
-              {% for cat in content_type %}
-                  <input type="checkbox" id="{{ cat.0.0 }}" name="{{ cat.0.0 }}" value="{{ cat.0.1 }}">
-                  <label for="{{ cat.0 }}"> {{ cat.0.0 }} ({{ cat.1 }})</label><br>
-
-              {% endfor %}
-
-            </div>
-          </div>
-           <br>
-           <button type="button" class="btn btn-outline-primary btn-sm" id="update_search">Filter search</button>
-                <hr>
-        </div>
-              <br>
 
             <h3>Results</h3>
+            <hr>
+            <br>
+            <br>
 
             {% for result in page_obj.object_list %}
 
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" >
-                    <div class="image" style="background-image: url('/static/media/{{ result.object.image }}');"></div>
+                    <div class="image" style="background-image: url('/media/{{ result.object.image }}');"></div>
                     <div class="text">
 
                      <h3 class="font-weight-light"><a href="/podcast/{{ result.object.pk }}">{{ result.object.title }}</a></h3>
