@@ -27,13 +27,6 @@ class PodcastSearch(SearchView):
 	context_object_name = 'object_list'
 
 
-
-	def get_context_data(self, *args, **kwargs):
-		context = super(PodcastSearch, self).get_context_data(*args, **kwargs)
-
-		return context
-
-
 def autocomplete(request):
 	sug1 = []
 	sqs1 = SearchQuerySet().models(Podcast).autocomplete(title=request.GET.get('q', ''))[:5]
