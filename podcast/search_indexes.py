@@ -23,4 +23,4 @@ class PodcastIndex(indexes.SearchIndex, indexes.Indexable):
 		return [tag.name for tag in object.ner.all()]
 
 	def prepare_topics(self, object):
-		return [topic.name for topic in object.topics.all()]
+		return [topic.topic_name for topic in object.topics.all()]
