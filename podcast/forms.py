@@ -44,12 +44,9 @@ class PodcastSearchForm(SearchForm):
 				sqs = sqs.filter(language=self.cleaned_data['language'])
 
 			if self.cleaned_data['entity']:
-				entity = NerEntity.objects.filter(id=self.cleaned_data['entity'])
-				sqs = sqs.filter(ner__in=entity)
+				sqs = sqs.filter(ner=self.cleaned_data['entity'])
 
 			if self.cleaned_data['topic']:
-				topic = NerEntity.objects.filter(id=self.cleaned_data['topic'])
-				print(topic)
-				sqs = sqs.filter(topics__in=topic )
+				sqs = sqs.filter(topics=self.cleaned_data['topic'])
 
 			return sqs

@@ -8,9 +8,9 @@ class PodcastIndex(indexes.SearchIndex, indexes.Indexable):
 	summary = indexes.CharField(model_attr='summary')
 	title = indexes.EdgeNgramField(model_attr='title')
 	title_en = indexes.EdgeNgramField(model_attr='title_en')
-	ner = indexes.EdgeNgramField(model_attr='ner')
+	entity = indexes.EdgeNgramField(model_attr='ner')
 	language = indexes.CharField(model_attr='language')
-	topics = indexes.EdgeNgramField(model_attr='topics')
+	topic = indexes.EdgeNgramField(model_attr='topics')
 
 
 	def get_model(self):
