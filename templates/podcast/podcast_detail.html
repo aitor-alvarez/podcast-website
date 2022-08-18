@@ -4,18 +4,78 @@
 {% block content %}
 
 
- <div class="site-section">
-  <div class="container">
-   <div class="row">
-    <div class="col-md-8">
+<main id="main">
 
-          <h3>{{ object.title}}</h3>
+    <!-- ======= Breadcrumbs ======= -->
+    <section>
+      <div class="container">
+      </div>
+    </section>
+
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+          <br>
+          <br>
+
+          <div class="row">
+              <div class="col-md-12">
+                <h3>{{ object.title }}</h3>
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <div class="col-md-8">
+                  <p class="text-justify font-weight-light">{{ object.summary }}</p>
+              </div>
+              <div class="col-md-4">
+                  <audio controls>
+                      <source src="horse.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                </audio>
+                    <br>
+                    <br>
+                  <div class="row">
+                    <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Duration: {{ object.duration }}</span>
+
+                    </div>
+                </div>
+                   <hr>
+                  <div class="row">
+                    <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Language: </span>
+                        <span class="badge badge-success">{{ object.language }}</span>
+                    </div>
+              </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Topics: </span>
+                        {% for topic in object.topics.all %}
+                        <span class="badge badge-secondary">{{ topic }}</span>
+                        {% endfor %}
+                    </div>
+              </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Entities: </span>
+                        {% for ner in object.ner.all %}
+                            <span class="badge badge-primary">{{ ner }}</span>
+                        {% endfor %}
+                    </div>
+              </div>
+              </div>
+          </div>
+          <br>
+          <br>
 
 
 
-    </div>
-  </div>
-</div>
-</div>
+      </div>
+    </section>
+
+  </main>
 
 {% endblock %}

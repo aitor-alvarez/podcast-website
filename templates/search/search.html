@@ -9,8 +9,6 @@
 
   <section id="hero" class=" search d-flex align-items-center">
 
-
-
     <div class="container">
       <div class="row">
           <div class="col-lg-12">
@@ -60,7 +58,7 @@
                     <div class="image" style="background-image: url('/media/{{ result.object.image }}');"></div>
                     <div class="text">
 
-                     <h3 class="font-weight-light"><a href="/podcast/{{ result.object.pk }}">{{ result.object.title }}</a></h3>
+                     <h3 class="font-weight-normal"><a href="/podcast/{{ result.object.pk }}">{{ result.object.title }}</a></h3>
                 <div class="text-black mb-3"><span class="text-black"><small>Duration: {{ result.object.duration }}</small></span>
                 </div>
                     <p class="font-weight-normal " style="font-size: 0.9rem;">{{ result.object.summary }}</p>
