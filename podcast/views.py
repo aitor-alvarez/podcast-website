@@ -7,6 +7,7 @@ from haystack.query import SearchQuerySet
 import json
 from django.http import HttpResponse
 from django.views.generic import DetailView
+from django.db.models import Q
 
 
 class PodcastView(DetailView):
@@ -15,7 +16,8 @@ class PodcastView(DetailView):
 	def get_context_data(self, *args, **kwargs):
 		context = super(PodcastView, self).get_context_data(*args, **kwargs)
 		tags =[tag.id for tag in self.object.ner.all()]
-		related = Podcast.objects.filter(ner__podcast__in=tags).distinct().exclude(id=self.object.id)
+		topics = []
+		related = Podcast.objects.filter(Q(ner__podcast__in=tags) | Q(topics__podcast__in=topics)).distinct().exclude(id=self.object.id)
 		context['related'] = related
 		return context
 
