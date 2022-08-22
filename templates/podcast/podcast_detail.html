@@ -5,8 +5,6 @@
 
 
 <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
     <section>
       <div class="container">
       </div>
@@ -30,11 +28,21 @@
               </div>
               <div class="col-md-4">
                   <audio controls>
-                      <source src="horse.mp3" type="audio/mpeg">
+                      <source src="{{ object.podcast_file }}" type="audio/mpeg">
                         Your browser does not support the audio element.
                 </audio>
                     <br>
                     <br>
+              {% if object.podcast_url %}
+                  <div class="row">
+                    <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Podcast URL: {{ object.podcast_url}}</span>
+
+                    </div>
+                </div>
+                   <hr>
+              {% endif %}
+
                   <div class="row">
                     <div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;">Duration: {{ object.duration }}</span>
