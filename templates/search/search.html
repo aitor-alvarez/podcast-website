@@ -123,3 +123,41 @@
   </main>
 
 {% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$( document ).ready(function() {
+
+    $('#filters').hide();
+
+    $('#show_filters').click(function () {
+
+        $('#filters').show(550);
+        $('#show_filters').hide(500);
+
+    })
+
+
+    $('.AutoComplete').autoComplete({
+    resolver: 'custom',
+        noResultsText:'No suggestions...',
+    events: {
+        search: function (qry, callback) {
+            $.ajax(
+                '/search/auto/',
+                {
+                    data: { 'q': qry}
+                }
+            ).done(function (res) {
+                callback(res.results)
+            });
+        }
+    }
+});
+
+
+});
+
+
+  </script>
+{% endblock %}
