@@ -5,6 +5,7 @@ import datetime
 class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
 	title_en = models.CharField(max_length=155, blank=False, null=False)
+	author = models.CharField(max_length=155, blank=True, null=True)
 	image = models.ImageField(upload_to='img', blank=True)
 	summary = models.TextField(blank=True)
 	ner = models.ManyToManyField('NerEntity', blank=True)
