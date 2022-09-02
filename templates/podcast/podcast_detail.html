@@ -28,7 +28,7 @@
               </div>
               <div class="col-md-4">
                   <audio controls>
-                      <source src="{{ object.podcast_file }}" type="audio/mpeg">
+                      <source src="/media/podcast/{{ object.guid}}.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                 </audio>
                     <br>
@@ -36,7 +36,7 @@
               {% if object.podcast_url %}
                   <div class="row">
                     <div class="col-sm">
-                        <span class="font-weight-normal " style="font-size: 1rem;">Podcast URL: {{ object.podcast_url}}</span>
+                        <span class="font-weight-normal " style="font-size: 1rem;">Podcast URL: <a href="{{ object.podcast_url}}" target="_blank">External link</a></span>
 
                     </div>
                 </div>

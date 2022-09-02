@@ -4,7 +4,7 @@ import datetime
 
 class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
-	title_en = models.CharField(max_length=155, blank=False, null=False)
+	title_en = models.CharField(max_length=155, blank=True, null=True)
 	author = models.CharField(max_length=155, blank=True, null=True)
 	image = models.ImageField(upload_to='img', blank=True)
 	summary = models.TextField(blank=True)
@@ -15,6 +15,7 @@ class Podcast(models.Model):
 	podcast_file = models.FileField(upload_to='podcast', blank=True)
 	duration = models.DurationField(blank=True)
 	sophistication = models.DecimalField(blank=True, decimal_places=2, max_digits=4)
+	guid = models.CharField(max_length=155, blank=True, null=True)
 	created = models.DateTimeField(default=datetime.datetime.now())
 
 	def __str__(self):
