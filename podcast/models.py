@@ -6,7 +6,7 @@ class Podcast(models.Model):
 	title = models.CharField(max_length=155, blank=False, null=False)
 	title_en = models.CharField(max_length=155, blank=True, null=True)
 	author = models.CharField(max_length=155, blank=True, null=True)
-	image = models.ImageField(upload_to='img', blank=True)
+	image = models.ImageField(upload_to='img', blank=True, null=True)
 	summary = models.TextField(blank=True)
 	ner = models.ManyToManyField('NerEntity', blank=True)
 	topics = models.ManyToManyField('Topic', blank=True)
