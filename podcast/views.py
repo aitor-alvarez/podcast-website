@@ -17,7 +17,7 @@ class PodcastView(DetailView):
 		context = super(PodcastView, self).get_context_data(*args, **kwargs)
 		tags =[tag.id for tag in self.object.ner.all()]
 		topics = []
-		related = Podcast.objects.filter(Q(ner__podcast__in=tags) | Q(topics__podcast__in=topics)).distinct().exclude(id=self.object.id)
+		related = Podcast.objects.filter(Q(ner__podcast__in=tags) | Q(topics__podcast__in=topics)).distinct().exclude(id=self.object.id).exclude(active=False)
 		context['related'] = related
 		return context
 
