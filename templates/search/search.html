@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;">Topics: </span>
-                        {% for ner_tag in result.object.ner.all %}<a href="/search/?q={{query}}&language={{ result.object.language.id }}&entity={{ ner_tag.id }}"><span class="badge badge-pill badge-secondary">{{ ner_tag }}</span></a>{% endfor %}
+                        {% for topic in result.object.topics.all %}<a href="/search/?q={{query}}&language={{ result.object.language.id }}&topic={{ topic.id }}"><span class="badge badge-pill badge-secondary">{{ topic }}</span></a>{% endfor %}
                     </div>
                    <!-- <div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;">Entities: </span>
