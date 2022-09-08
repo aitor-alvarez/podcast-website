@@ -1,0 +1,14 @@
+asgiref==3.5.2
+boto3==1.24.2
+botocore==1.27.2
+Django==4.0.5
+django-haystack==3.2.1
+django-s3direct==2.0.0
+jmespath==1.0.0
+Pillow==9.1.1
+python-dateutil==2.8.2
+s3transfer==0.6.0
+six==1.16.0
+sqlparse==0.4.2
+urllib3==1.26.9
+Whoosh==2.7.4
