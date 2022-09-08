@@ -17,7 +17,7 @@ class PodcastIndex(indexes.SearchIndex, indexes.Indexable):
 		return Podcast
 
 	def index_queryset(self, using=None):
-		return self.get_model().objects.filter(created__lte= datetime.datetime.now())
+		return self.get_model().objects.filter(active=True)
 
 	def prepare_tags(self, object):
 		return [tag.name for tag in object.ner.all()]

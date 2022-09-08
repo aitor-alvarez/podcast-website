@@ -17,14 +17,16 @@
 
           <div class="row">
               <div class="col-md-12">
-                <h3>{{ object.title }}</h3>
+                <h3>{{ object.title_en }}</h3>
               </div>
           </div>
           <br>
           <br>
           <div class="row">
               <div class="col-md-8">
-                  <p class="text-justify font-weight-light">{{ object.summary }}</p>
+                  <p class=" font-weight-light" >
+                    <img class="float-left" style="max-height: 200px;" src="/media/{{ object.image }}">
+                  {{ object.summary }}</p>
               </div>
               <div class="col-md-4">
                   <audio controls>
@@ -67,11 +69,16 @@
               </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm">
+                    <!--<div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;">Entities: </span>
                         {% for ner in object.ner.all %}
                             <span class="badge badge-primary">{{ ner }}</span>
                         {% endfor %}
+                    </div>-->
+                  <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Author: </span>
+
+                            <span class="badge badge-primary">{{ object.author }}</span>
                     </div>
               </div>
               </div>

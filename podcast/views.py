@@ -32,7 +32,7 @@ class PodcastSearch(SearchView):
 def autocomplete(request):
 	sug1 = []
 	sug3 = []
-	sqs1 = SearchQuerySet().models(Podcast).autocomplete(title=request.GET.get('q', ''))[:5]
+	sqs1 = SearchQuerySet().models(Podcast).autocomplete(title_en=request.GET.get('q', ''))[:5]
 	sqs2 = SearchQuerySet().models(Podcast).autocomplete(ner=request.GET.get('q', ''))[:5]
 	sqs3 = SearchQuerySet().models(Podcast).autocomplete(topics=request.GET.get('q', ''))[:5]
 
@@ -44,7 +44,7 @@ def autocomplete(request):
 		for topic in result.object.topics.all():
 			sug3.append(topic.topic_name)
 
-	sug2 = [result.title for result in sqs1]
+	sug2 = [result.title_en for result in sqs1]
 	suggestions = sug1 + sug2 + sug3
 	the_data = json.dumps({'results': list(set(suggestions))})
 	return HttpResponse(the_data, content_type='application/json')

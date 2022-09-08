@@ -55,16 +55,20 @@
             {% for result in page_obj.object_list %}
 
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" >
-                    <div class="image" style="background-image: url('/media/{{ result.object.image }}');"></div>
+                    <div class="image" style="background-image: url('/media/{{ result.object.image }}');">
+
+                    </div>
                     <div class="text">
 
-                     <h3 class="font-weight-normal"><a href="/podcast/{{ result.object.pk }}">{{ result.object.title }}</a></h3>
+
+                     <h3 class="font-weight-normal"><a href="/podcast/{{ result.object.pk }}">{{ result.object.title_en }}</a></h3>
                 <div class="text-black mb-3"><span class="text-black"><small>Duration: {{ result.object.duration }}</small></span>
                 </div>
                     <p class="font-weight-normal text-justify" style="font-size: 0.9rem;">{{ result.object.summary }}</p>
                         <hr>
                 <div class="row">
                     <div class="col-sm">
+
                         <span class="font-weight-normal " style="font-size: 1rem;">Language: </span><a href="/search/?q={{query}}&language={{ result.object.language.id }}">
                         <span class="badge badge-pill badge-success">{{ result.object.language }}</span></a>
                     </div>
@@ -72,10 +76,10 @@
                         <span class="font-weight-normal " style="font-size: 1rem;">Topics: </span>
                         {% for ner_tag in result.object.ner.all %}<a href="/search/?q={{query}}&language={{ result.object.language.id }}&entity={{ ner_tag.id }}"><span class="badge badge-pill badge-secondary">{{ ner_tag }}</span></a>{% endfor %}
                     </div>
-                    <div class="col-sm">
+                   <!-- <div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;">Entities: </span>
                         {% for topic in result.object.topics.all %}<a href="/search/?q={{query}}&language={{ result.object.language.id }}&topic={{ topic.id}}"><span class="badge badge-pill badge-primary">{{ topic }}</span></a>{% endfor %}
-                    </div>
+                    </div>-->
                 </div>
                     {% if result.object.tags %}
                 <div class="row">
