@@ -18,7 +18,7 @@ class PodcastForm(forms.ModelForm):
 class PodcastSearchForm(SearchForm):
 		language = forms.ModelChoiceField(queryset=Language.objects.all(), required=False, empty_label='Select the language')
 		entity = forms.CharField(required=False, widget=forms.HiddenInput)
-		topic = forms.CharField(required=False, widget=forms.HiddenInput)
+		topics = forms.CharField(required=False, widget=forms.HiddenInput)
 
 		def __init__(self, *args, **kwargs):
 			super(PodcastSearchForm, self).__init__(*args, **kwargs)
@@ -30,9 +30,7 @@ class PodcastSearchForm(SearchForm):
 
 			if self.cleaned_data['q'] =='' and self.cleaned_data['language']:
 				sqs = self.searchqueryset.all()
-			elif self.cleaned_data['q'] =='' and self.cleaned_data['entity']:
-				sqs = self.searchqueryset.all()
-			elif self.cleaned_data['q'] =='' and self.cleaned_data['topic']:
+			elif self.cleaned_data['q'] =='' and self.cleaned_data['topics']:
 				sqs = self.searchqueryset.all()
 			else:
 				sqs = super(PodcastSearchForm, self).search()
@@ -43,10 +41,8 @@ class PodcastSearchForm(SearchForm):
 			if self.cleaned_data['language']:
 				sqs = sqs.filter(language=self.cleaned_data['language'])
 
-			if self.cleaned_data['entity']:
-				sqs = sqs.filter(ner=self.cleaned_data['entity'])
-
-			if self.cleaned_data['topic']:
-				sqs = sqs.filter(topics__in=[self.cleaned_data['topic']])
+			if self.cleaned_data['topics']:
+				topics= Topic.objects.filter(id=self.cleaned_data['topics'])
+				sqs = sqs.filter(topics=topics)
 
 			return sqs

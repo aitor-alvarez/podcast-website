@@ -9,4 +9,3 @@ media/
 *.DS_Store
 podcast_website/whoosh_index/
 *.toc
-*.txt

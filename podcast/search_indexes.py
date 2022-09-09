@@ -10,7 +10,7 @@ class PodcastIndex(indexes.SearchIndex, indexes.Indexable):
 	title_en = indexes.EdgeNgramField(model_attr='title_en')
 	entity = indexes.EdgeNgramField(model_attr='ner')
 	language = indexes.CharField(model_attr='language')
-	topic = indexes.EdgeNgramField(model_attr='topics')
+	topics = indexes.EdgeNgramField(model_attr='topics')
 
 
 	def get_model(self):
@@ -19,8 +19,8 @@ class PodcastIndex(indexes.SearchIndex, indexes.Indexable):
 	def index_queryset(self, using=None):
 		return self.get_model().objects.filter(active=True)
 
-	def prepare_tags(self, object):
-		return [tag.name for tag in object.ner.all()]
+	def prepare_topics(self, object):
+		return [topic.name for topic in object.topics.all()]
 
 	def prepare_topics(self, object):
 		return [topic.topic_name for topic in object.topics.all()]
