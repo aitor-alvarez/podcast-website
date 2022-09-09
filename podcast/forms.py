@@ -47,6 +47,6 @@ class PodcastSearchForm(SearchForm):
 				sqs = sqs.filter(ner=self.cleaned_data['entity'])
 
 			if self.cleaned_data['topic']:
-				sqs = sqs.filter(topics=self.cleaned_data['topic'])
+				sqs = sqs.filter(topics__in=[self.cleaned_data['topic']])
 
 			return sqs
