@@ -8,7 +8,7 @@ class Podcast(models.Model):
 	author = models.CharField(max_length=155, blank=True, null=True)
 	image = models.ImageField(upload_to='img', blank=True, null=True)
 	summary = models.TextField(blank=True, null=True)
-	ner = models.ManyToManyField('NerEntity', blank=True)
+	#ner = models.ManyToManyField('NerEntity', blank=True)
 	topics = models.ManyToManyField('Topic', blank=True)
 	language = models.ForeignKey('Language', on_delete=models.CASCADE)
 	podcast_url = models.URLField(blank=True)
