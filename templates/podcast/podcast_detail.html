@@ -69,18 +69,19 @@
               </div>
                   <hr>
                   <div class="row">
-                    <!--<div class="col-sm">
-                        <span class="font-weight-normal " style="font-size: 1rem;">Entities: </span>
-                        {% for ner in object.ner.all %}
-                            <span class="badge badge-primary">{{ ner }}</span>
-                        {% endfor %}
-                    </div>-->
                   <div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;">Author: </span>
 
                             <span class="badge badge-primary">{{ object.author }}</span>
                     </div>
               </div>
+              <hr>
+                  <div class="row">
+                      <div class="col-sm">
+                        <span class="font-weight-normal " style="font-size: 1rem;">Speech density: </span>
+                            <span class="badge badge-primary">{% if object.sophistication > 35 %}HIGH{% elif object.sophistication < 20 %}LOW{% else %}MEDIUM{% endif %}</span>
+                    </div>
+                  </div>
               </div>
           </div>
           <br>
