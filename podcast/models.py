@@ -14,7 +14,7 @@ class Podcast(models.Model):
 	podcast_url = models.URLField(blank=True)
 	podcast_file = models.FileField(upload_to='podcast', blank=True, null=True)
 	duration = models.DurationField(blank=True, null=True)
-	sophistication = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=4)
+	sophistication = models.IntegerField(blank=True, null=True, decimal_places=2, max_digits=4)
 	guid = models.CharField(max_length=155, blank=True, null=True)
 	created = models.DateTimeField(default=datetime.datetime.now(), blank=True, null=True)
 	active = models.BooleanField(default=False, blank=True, null=True)
