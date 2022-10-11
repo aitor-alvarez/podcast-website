@@ -34,7 +34,11 @@
 
         <p>Query examples:
               {% for keyword in keywords %}
+                  {% if keyword == keywords|last %}
+                  <a href="/search/?q={{ keyword }}">{{ keyword }}</a>
+                  {% else %}
                  <a href="/search/?q={{ keyword }}">{{ keyword }}</a>,
+                  {% endif %}
               {% endfor %}
         </p>
 
