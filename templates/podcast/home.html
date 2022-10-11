@@ -31,6 +31,13 @@
       </div>
     </form>
           </div>
+
+        <p>Query examples:
+              {% for keyword in keywords %}
+                 <a href="/search/?q={{ keyword }}">{{ keyword }}</a>,
+              {% endfor %}
+        </p>
+
         </div>
       </div>
     </div>

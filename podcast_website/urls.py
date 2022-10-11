@@ -9,7 +9,7 @@ from podcast.views import autocomplete
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='podcast/home.html'), name='home'),
+    path('', home_page, name='home'),
     path('search/', PodcastSearch.as_view()),
     path('search/auto/', autocomplete),
     path('podcast/<pk>', PodcastView.as_view()),

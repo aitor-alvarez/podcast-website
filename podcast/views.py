@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render
 from .models import *
 from haystack.generic_views import SearchView
@@ -20,6 +22,12 @@ class PodcastView(DetailView):
 		related = Podcast.objects.filter(Q(ner__podcast__in=tags) | Q(topics__podcast__in=topics)).distinct().exclude(id=self.object.id).exclude(active=False)
 		context['related'] = related
 		return context
+
+
+def home_page(request):
+	keywords = Topic.objects.all()
+	keywords = random.choices(keywords,k=5)
+	return render(request, 'podcast/home.html', {'keywords': keywords})
 
 
 class PodcastSearch(SearchView):
