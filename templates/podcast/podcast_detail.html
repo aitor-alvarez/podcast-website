@@ -61,7 +61,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm">
-                        <span class="font-weight-normal " style="font-size: 1rem;">Topics: </span>
+                        <span class="font-weight-normal " style="font-size: 1rem;" data-toggle="tooltip" data-placement="top" title="Salient topics and named entities extracted from the podcast">Topics: </span>
                         {% for topic in object.topics.all %}
                         <span class="badge badge-secondary">{{ topic }}</span>
                         {% endfor %}
@@ -70,7 +70,7 @@
                   <hr>
                   <div class="row">
                   <div class="col-sm">
-                        <span class="font-weight-normal " style="font-size: 1rem;">Author: </span>
+                        <span class="font-weight-normal " style="font-size: 1rem;" data-toggle="tooltip" data-placement="top" title="Author of the podcast">Author: </span>
 
                             <span class="badge badge-primary">{{ object.author }}</span>
                     </div>
@@ -78,8 +78,8 @@
               <hr>
                   <div class="row">
                       <div class="col-sm">
-                        <span class="font-weight-normal " style="font-size: 1rem;">Speech density: </span>
-                            <span class="badge badge-info ">{% if object.sophistication > 35 %}HIGH{% elif object.sophistication <= 25 %}LOW{% else %}MEDIUM{% endif %}</span>
+                        <span class="font-weight-normal " style="font-size: 1rem;" data-toggle="tooltip" data-placement="top" title="A combined measure of lexical density and speech rate">Speech density: </span>
+                            <span class="badge badge-info" >{% if object.sophistication > 35 %}HIGH{% elif object.sophistication <= 25 %}LOW{% else %}MEDIUM{% endif %}</span>
                     </div>
                   </div>
               </div>
@@ -106,4 +106,12 @@
 
   </main>
 
+{% endblock %}
+
+{% block js %}
+<script type="application/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 {% endblock %}
