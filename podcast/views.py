@@ -36,6 +36,11 @@ class PodcastSearch(SearchView):
 	paginate_by = 10
 	context_object_name = 'object_list'
 
+	def get_context_data(self, **kwargs):
+		context = super(PodcastSearch, self).get_context_data(**kwargs)
+		context['suggestions'] = random.choices(Topic.objects.all(), k = 8)
+		return context
+
 
 def autocomplete(request):
 	sug1 = []

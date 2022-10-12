@@ -80,24 +80,21 @@
                         {% for topic in result.object.topics.all %}<a href="/search/?q={{query}}&language={{ result.object.language.id }}&topic={{ topic.id}}"><span class="badge badge-pill badge-primary">{{ topic }}</span></a>{% endfor %}
                     </div>-->
                 </div>
-                    {% if result.object.tags %}
-                <div class="row">
-                    <div class="col-md">
-                    <span class="font-weight-normal " style="font-size: 1rem;">Tags: </span>
-                        {% for tag in result.object.tags.all %}
-                           <a href="/search/?q={{ tag }}"> <span class="badge badge-pill badge-info"> {{ tag }}</span></a>
-
-                        {% endfor %}
                     </div>
                 </div>
-                    {% endif %}
-                    </div>
-                </div>
-            {% empty %}
-                <h4>No results found.</h4>
             {% endfor %}
 
-
+{% else %}
+    <h4>No results found.</h4>
+    <h5>Try any of the following suggestions:
+              {% for keyword in suggestions %}
+                  {% if keyword == keywords|last %}
+                  <a href="/search/?q={{ keyword }}">{{ keyword }}</a>
+                  {% else %}
+                 <a href="/search/?q={{ keyword }}">{{ keyword }}</a>,
+                  {% endif %}
+              {% endfor %}
+        </h5>
 
             {% if page_obj.has_previous or page_obj.has_next %}
                 <div>
