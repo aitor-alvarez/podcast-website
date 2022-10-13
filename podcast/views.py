@@ -1,5 +1,4 @@
 import random
-
 from django.shortcuts import render
 from .models import *
 from haystack.generic_views import SearchView
