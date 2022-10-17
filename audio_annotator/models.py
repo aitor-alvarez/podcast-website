@@ -11,4 +11,6 @@ class PodcastAnnotation(models.Model):
 
 class Annotation(models.Model):
 	annotation = models.TextField()
+	time_from = models.DurationField()
+	time_to = models.DurationField()
 

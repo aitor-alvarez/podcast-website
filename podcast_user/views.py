@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-from forms import SignUpForm
+from .forms import SignUpForm
 import random
 import string
 
