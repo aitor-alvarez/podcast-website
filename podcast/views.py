@@ -3,7 +3,6 @@ from django.shortcuts import render
 from .models import *
 from haystack.generic_views import SearchView
 from .forms import PodcastSearchForm
-from collections import Counter
 from haystack.query import SearchQuerySet
 import json
 from django.http import HttpResponse
