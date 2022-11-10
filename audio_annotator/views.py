@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from django.http import HttpResponse
 
+
 def get_podcast(request, podcast_id):
 	podcast = Podcast.objects.get(id=podcast_id)
 	podcast_form = PodcastForm()
