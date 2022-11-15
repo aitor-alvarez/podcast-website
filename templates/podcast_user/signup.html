@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
     {% if error %}
 <div class="section scrollspy">
@@ -8,7 +9,7 @@
                     <div class="col s12">
                         <div class="row">
                             {% else %}
-<div class="card-panel grey lighten-5 z-depth-1" id="description">
+<div id="hero" class=" search d-flex align-items-center">
                 <h5>To signup for an account, please provide a valid e-mail address:</h5>
                 <div class="row valign-wrapper">
                     <div class="col s12">

@@ -1,13 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
-<div class="container">
+<section id="hero" class=" search d-flex align-items-center">
+    <div class="container">
+        {% if request.user.is_authenticated %}
+        <h4>Add annotations</h4>
+        <hr>
       <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-10">
+        <div class="row">
+
+        </div>
 
           </div>
       </div>
-</div>
+     {% else %}
+            <h4><strong>You need to be an authorized user to add annotations</strong></h4>
+     {% endif %}
+    </div>
+
+</section>
 
 {% endblock %}
 

@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from podcast_website import settings
 from podcast.views import autocomplete
 from podcast_user.views import *
+from audio_annotator.views import *
 
 
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
     path('search/', PodcastSearch.as_view()),
     path('search/auto/', autocomplete),
     path('podcast/<pk>', PodcastView.as_view()),
+		path('annotate/<podcast_id>', get_podcast),
     path('about', TemplateView.as_view(template_name='podcast/about.html'), name='about')
 
 ]

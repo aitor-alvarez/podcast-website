@@ -7,8 +7,8 @@ from django.http import HttpResponse
 
 def get_podcast(request, podcast_id):
 	podcast = Podcast.objects.get(id=podcast_id)
-	podcast_form = PodcastForm()
-	return  render(request, 'audio_annotator/annotator.html', {'form': podcast_form, 'podcast': podcast})
+	annotation_form = PodcastAnnotationForm()
+	return  render(request, 'audio_annotator/annotator.html', {'form': annotation_form, 'podcast': podcast})
 
 
 def save_annotation(request, data, podcast_id):
