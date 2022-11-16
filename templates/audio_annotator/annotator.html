@@ -12,6 +12,11 @@
           <div class="col-lg-10">
         <div class="row">
 
+            <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="voladd">Vol+</button>
+        <button id="volmin">Vol-</button>
+
         </div>
 
           </div>
@@ -27,6 +32,36 @@
 
 {% block js  %}
 <script type="application/javascript">
+
+
+$(document).ready(function(){
+	const howler = new Howl({
+		src: ['/media/podcast/{{ podcast.guid}}.mp3'],
+		volume: 0.5
+	});
+	$("#play").on("click", function(){
+		howler.play();
+	});
+	$("#pause").on("click", function(){
+		howler.pause();
+	});
+	$("#voladd").on("click", function(){
+		var vol = howler.volume();
+		vol += 0.1;
+		if(vol > 1){
+			vol = 1;
+		}
+		howler.volume(vol);
+	});
+	$("#volmin").on("click", function(){
+		var vol = howler.volume();
+		vol -=0.1;
+		if(vol < 0){
+			vol = 0;
+		}
+		howler.volume(vol);
+	});
+});
 
 </script>
 
