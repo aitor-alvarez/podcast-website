@@ -11,11 +11,30 @@
       <div class="row">
           <div class="col-lg-10">
         <div class="row">
+        <div id="waveform"></div>
+        <button
+      id="play"
+      class="pure-button pure-button-secondary"
+      onclick="startRecording()"
+    >
+      <i class="fa fa-play-circle"></i> Play
+    </button>
+    <button
+      id="pause"
+      class="pure-button pure-button-secondary"
+      onclick="pauseRecording()"
+    >
+      <i class="fa fa-pause"></i> Pause
+    </button>
+    <button
+      id="stop"
+      class="pure-button pure-button-primary"
+      onclick="stopRecording()"
+    >
+      <i class="fa fa-stop"></i> Stop
+    </button>
 
-            <button id="play">Play</button>
-        <button id="pause">Pause</button>
-        <button id="voladd">Vol+</button>
-        <button id="volmin">Vol-</button>
+<div id="timeline"></div>
 
         </div>
 
@@ -32,37 +51,19 @@
 
 {% block js  %}
 <script type="application/javascript">
-
-
-$(document).ready(function(){
-	const howler = new Howl({
-		src: ['/media/podcast/{{ podcast.guid}}.mp3'],
-		volume: 0.5
-	});
-	$("#play").on("click", function(){
-		howler.play();
-	});
-	$("#pause").on("click", function(){
-		howler.pause();
-	});
-	$("#voladd").on("click", function(){
-		var vol = howler.volume();
-		vol += 0.1;
-		if(vol > 1){
-			vol = 1;
-		}
-		howler.volume(vol);
-	});
-	$("#volmin").on("click", function(){
-		var vol = howler.volume();
-		vol -=0.1;
-		if(vol < 0){
-			vol = 0;
-		}
-		howler.volume(vol);
-	});
+var wavesurfer = WaveSurfer.create({
+    container: '#waveform'
 });
-
+wavesurfer.load('/media/podcast/{{ podcast.guid}}.mp3');
+function startRecording() {
+  wavesurfer.play()
+}
+function pauseRecording() {
+  wavesurfer.pause()
+}
+function stopRecording() {
+  wavesurfer.stop()
+}
 </script>
 
 {% endblock %}
