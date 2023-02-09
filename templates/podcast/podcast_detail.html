@@ -36,8 +36,8 @@
 
               <div class="col-md-4">
 
-                  <audio controls preload="none">
-                      <source src="/media/podcast/{{ object.guid}}.mp3" type="audio/mpeg">
+                  <audio controls controlsList="nodownload">
+                      <source src="/media/podcast/{{ object.guid}}.mp3" >
                         Your browser does not support the audio element.
                 </audio>
                     <br>
@@ -118,14 +118,11 @@
 
 {% block js %}
 <script type="application/javascript">
-var audio = '/media/podcast/{{ object.guid}}.mp3';
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
 
-var sound = new Howl({
-      src: [audio]
-    });
 
 </script>
 {% endblock %}
