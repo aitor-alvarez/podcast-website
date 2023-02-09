@@ -27,6 +27,11 @@ def home_page(request):
 	return render(request, 'podcast/home.html', {'keywords': keywords})
 
 
+def get_topics(request):
+	topics = Topic.objects.all()
+	return render(request, 'podcast/topics.html', {'topics': topics})
+
+
 class PodcastSearch(SearchView):
 	form_class = PodcastSearchForm
 	template = 'search/search.html'

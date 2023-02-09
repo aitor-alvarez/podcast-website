@@ -22,6 +22,7 @@ urlpatterns = [
 		path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
+		path('topics/', get_topics),
     path('search/', PodcastSearch.as_view()),
     path('search/auto/', autocomplete),
     path('podcast/<pk>', PodcastView.as_view()),

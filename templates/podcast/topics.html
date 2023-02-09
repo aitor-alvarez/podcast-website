@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<main id="main">
+    <section>
+      <div class="container">
+      </div>
+    </section>
+
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+          <br>
+          <br>
+
+          <div class="row">
+              <div class="col-md-12">
+                <h3>Topics</h3>
+                  <hr>
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <div class="col-md-12">
+                {% for topic in topics %}
+            <a href="/search/?q=&topics={{ topic.id }}"><span class="badge badge-pill badge-success">{{ topic }}</span></a>
+
+
+                {% endfor %}
+              </div>
+
+
+          </div>
+
+          <br>
+          <br>
+
+
+  </div>
+      </div>
+    </section>
+
+  </main>
+
+{% endblock %}
+
+{% block js %}
+<script type="application/javascript">
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
+
+</script>
+{% endblock %}
