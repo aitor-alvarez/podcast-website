@@ -8,6 +8,7 @@ import json
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from audio_annotator.models import PodcastAnnotation
+from django.db.models import Q
 
 
 class PodcastView(DetailView):
@@ -58,3 +59,14 @@ def autocomplete(request):
 	suggestions = sug2 + sug3
 	the_data = json.dumps({'results': list(set(suggestions))})
 	return HttpResponse(the_data, content_type='application/json')
+
+
+#API search view
+def api_search(request):
+	sqs1 = SearchQuerySet().models(Podcast).filter(language=request.GET.get('language', ''))\
+		.filter(Q(title_en__icontains= request.GET.get('q', '')) | Q(summary__icontains= request.GET.get('q', '')))
+	sqs2 = SearchQuerySet().models(Podcast).filter(topics__topic_name__contains=request.GET.get('q', ''))
+	sqs1 += [s for s in sqs2 if s not in sqs1]
+	pods = [{"title": s.title_en, "summary": s.summary, "topics": [t.topic_name for t in s.topics.all], "uri": "/podcast/"+s.id} for s in sqs1]
+	podcasts = json.dumps({'results': pods})
+	return podcasts

@@ -16,17 +16,17 @@ urlpatterns = [
     path('password-done', TemplateView.as_view(template_name="registration/password_change_done.html"), name="password_change_done"),
     path('grappelli/', include('grappelli.urls')),
     path('request-user/', request_user, name='request-user'),
-		path('password_reset/',auth_views.PasswordResetView.as_view(), name='admin_password_reset'),
-		path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-		path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-		path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+	path('password_reset/',auth_views.PasswordResetView.as_view(), name='admin_password_reset'),
+	path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+	path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+	path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
-		path('topics/', get_topics),
+	path('topics/', get_topics),
     path('search/', PodcastSearch.as_view()),
     path('search/auto/', autocomplete),
     path('podcast/<pk>', PodcastView.as_view()),
-		path('annotate/<podcast_id>', get_podcast),
+	path('annotate/<podcast_id>', get_podcast),
     path('about', TemplateView.as_view(template_name='podcast/about.html'), name='about')
 
 ]
