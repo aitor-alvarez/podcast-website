@@ -8,6 +8,7 @@ class Podcast(models.Model):
 	author = models.CharField(max_length=155, blank=True, null=True)
 	image = models.ImageField(upload_to='img', blank=True, null=True)
 	summary = models.TextField(blank=True, null=True)
+	summary_lang = models.TextField(blank=True, null=True)
 	ner = models.ManyToManyField('NerEntity', blank=True)
 	topics = models.ManyToManyField('Topic', blank=True)
 	language = models.ForeignKey('Language', on_delete=models.CASCADE)
@@ -32,6 +33,8 @@ class NerEntity(models.Model):
 
 class Topic(models.Model):
 	topic_name = models.CharField(max_length=155, blank=False, null=False)
+	topic_lang = models.CharField(max_length=155, blank=False, null=False)
+	language = models.ForeignKey('Language', on_delete=models.CASCADE)
 	time_from = models.DurationField(blank=True, null=True)
 	time_to = models.DurationField(blank=True, null=True)
 
