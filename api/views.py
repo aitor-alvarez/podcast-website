@@ -6,8 +6,8 @@ from django.http import JsonResponse
 
 
 @csrf_exempt
-def verify_device(config):
-	if ExternalDevice.objects.filter(ipaddress=config['ip'], key=config['key']).exists():
+def verify_device(config, ip):
+	if ExternalDevice.objects.filter(ipaddress=ip, key=config['key']).exists():
 		obj = ExternalDevice.objects.get(ipaddress=config['ip'], key=config['key'])
 		s = ''.join(random.choice('0123456789abcdefghijklmnopqrstuvwxyz!.#') for i in range(59))
 		try:
@@ -34,10 +34,10 @@ def token_is_valid(token):
 
 
 @csrf_exempt
-def authenticate_request(params):
+def authenticate_request(params, ip):
 	token = params.get('token', '')
 	if not token_is_valid(token):
-		valid_device = verify_device(params)
+		valid_device = verify_device(params, ip)
 		if 'token' in valid_device:
 			valid_device['message'] = 'RENEWED'
 			token = valid_device['token']
@@ -49,7 +49,8 @@ def authenticate_request(params):
 @csrf_exempt
 def search_podcasts(request):
 	try:
-		auth = authenticate_request(request.POST)
+		ip = get_client_ip(request)
+		auth = authenticate_request(request.POST, ip)
 		if 'token' in auth:
 			search_results = api_search(request.POST['q'], request.POST['language'])
 			return JsonResponse(search_results)
@@ -57,3 +58,12 @@ def search_podcasts(request):
 			return JsonResponse(auth)
 	except Exception as e:
 		return JsonResponse({"message": "The following error has happened: "+ e})
+
+
+def get_client_ip(request):
+	user_ip = request.META.get('HTTP_X_FORWARDED_FOR')
+	if user_ip:
+		ip = user_ip.split(',')[0]
+	else:
+		ip = request.META.get('REMOTE_ADDR')
+	return ip
