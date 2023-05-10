@@ -12,7 +12,7 @@ class Podcast(models.Model):
 	ner = models.ManyToManyField('NerEntity', blank=True)
 	topics = models.ManyToManyField('Topic', blank=True)
 	language = models.ForeignKey('Language', on_delete=models.CASCADE)
-	podcast_url = models.URLField(blank=True)
+	podcast_url = models.URLField(blank=True, max_length=255)
 	podcast_file = models.FileField(upload_to='podcast', blank=True, null=True)
 	duration = models.DurationField(blank=True, null=True)
 	sophistication = models.IntegerField(blank=True, null=True)
@@ -33,10 +33,6 @@ class NerEntity(models.Model):
 
 class Topic(models.Model):
 	topic_name = models.CharField(max_length=155, blank=False, null=False)
-	topic_lang = models.CharField(max_length=155, blank=False, null=False)
-	language = models.ForeignKey('Language', on_delete=models.CASCADE)
-	time_from = models.DurationField(blank=True, null=True)
-	time_to = models.DurationField(blank=True, null=True)
 
 	def __str__(self):
 		return self.topic_name

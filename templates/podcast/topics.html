@@ -25,15 +25,13 @@
           <br>
           <div class="row">
               <div class="col-md-12">
-                {% for topic in topics %}
+                {% for topic in topics_ru %}
 
-                    {% if topic.language.language_name == "Russian" %}
+            <a href="/search/?q=&topics={{ topic.0 }}&language=2"><span class="badge badge-pill badge-success">{{ topic.1 }}</span></a>
+                  {% endfor %}
+                {% for topic in topics_chn %}
+            <a href="/search/?q=&topics={{ topic.0 }}&language=1"><span class="badge badge-pill badge-info">{{ topic.1 }}</span></a>
 
-            <a href="/search/?q=&topics={{ topic.id }}&language=2"><span class="badge badge-pill badge-success">{{ topic }}</span></a>
-                    {% elif topic.language.language_name == "Chinese" %}
-
-            <a href="/search/?q=&topics={{ topic.id }}&language=1"><span class="badge badge-pill badge-info">{{ topic }}</span></a>
-                {% endif %}
                 {% endfor %}
               </div>
 
