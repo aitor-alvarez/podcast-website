@@ -87,8 +87,9 @@
                       <div class="col-sm">
                         <span class="font-weight-normal " style="font-size: 1rem;" data-toggle="tooltip" data-placement="top" title="A combined measure of lexical density and speech rate">Speech density: </span>
 
-                          {% if object.language == 'Chinese' %}
-                      <span class="badge badge-info" >{% if object.sophistication >= 69 %}HIGH{% elif object.sophistication <= 40 %}LOW{% else %}MEDIUM{% endif %}</span>
+                          {% if object.language.id == 1 %}
+
+                      <span class="badge badge-info" >{% if object.sophistication >= 67 %}HIGH{% elif object.sophistication <= 40 %}LOW{% else %}MEDIUM{% endif %}</span>
                             {% else %}
                           <span class="badge badge-info" >{% if object.sophistication > 35 %}HIGH{% elif object.sophistication <= 25 %}LOW{% else %}MEDIUM{% endif %}</span>
                             {% endif %}
