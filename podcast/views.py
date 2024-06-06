@@ -29,11 +29,13 @@ def home_page(request):
 
 
 def get_topics(request):
+	podcasts_ar = Podcast.objects.filter(language_id=3)
+	topics_ar = [(t.id, t.topic_name) for c in podcasts_ar for t in c.topics.all()]
 	podcasts_chn = Podcast.objects.filter(language_id=1)
 	topics_chn = [(t.id, t.topic_name) for c in podcasts_chn for t in c.topics.all()]
 	podcasts_ru = Podcast.objects.filter(language_id=2)
 	topics_ru = [(t.id, t.topic_name) for c in podcasts_ru for t in c.topics.all()]
-	return render(request, 'podcast/topics.html', {'topics_chn': set(topics_chn), 'topics_ru': set(topics_ru) })
+	return render(request, 'podcast/topics.html', {'topics_ar': set(topics_ar),'topics_chn': set(topics_chn), 'topics_ru': set(topics_ru) })
 
 
 class PodcastSearch(SearchView):
