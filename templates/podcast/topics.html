@@ -19,6 +19,7 @@
               <div class="col-md-12">
                 <h3>Topics</h3>
                   <hr>
+                  <span class="badge badge-pill  badge-primary ">Topics in Arabic</span>
                   <span class="badge badge-pill badge-info">Topics in Chinese</span>
                   <span class="badge badge-pill badge-success">Topics in Russian</span>
                   <hr>
@@ -28,15 +29,19 @@
           <br>
           <div class="row">
               <div class="col-md-12">
-                {% for topic in topics_ru %}
+        {% for topic in topics_ar %}
+            <a href="/search/?q=&topics={{ topic.0 }}&language=3"><span class="badge badge-pill badge-primary ">{{ topic.1 }}</span></a>
 
-            <a href="/search/?q=&topics={{ topic.0 }}&language=2"><span class="badge badge-pill badge-success">{{ topic.1 }}</span></a>
-                  {% endfor %}
+                {% endfor %}
                 {% for topic in topics_chn %}
             <a href="/search/?q=&topics={{ topic.0 }}&language=1"><span class="badge badge-pill badge-info">{{ topic.1 }}</span></a>
 
                 {% endfor %}
-              </div>
+
+              {% for topic in topics_ru %}
+
+            <a href="/search/?q=&topics={{ topic.0 }}&language=2"><span class="badge badge-pill badge-success">{{ topic.1 }}</span></a>
+                  {% endfor %}
 
 
           </div>
