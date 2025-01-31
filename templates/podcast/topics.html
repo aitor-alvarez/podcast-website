@@ -22,6 +22,8 @@
                   <span class="badge badge-pill  badge-primary ">Topics in Arabic</span>
                   <span class="badge badge-pill badge-info">Topics in Chinese</span>
                   <span class="badge badge-pill badge-success">Topics in Russian</span>
+                  <span class="badge badge-pill badge-secondary">Topics in Brazilian Portuguese</span>
+
                   <hr>
               </div>
           </div>
@@ -41,6 +43,11 @@
               {% for topic in topics_ru %}
 
             <a href="/search/?q=&topics={{ topic.0 }}&language=2"><span class="badge badge-pill badge-success">{{ topic.1 }}</span></a>
+                  {% endfor %}
+
+              {% for topic in topics_br %}
+
+            <a href="/search/?q=&topics={{ topic.0 }}&language=4"><span class="badge badge-pill badge-secondary">{{ topic.1 }}</span></a>
                   {% endfor %}
 
 

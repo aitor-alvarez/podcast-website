@@ -35,7 +35,10 @@ def get_topics(request):
 	topics_chn = [(t.id, t.topic_name) for c in podcasts_chn for t in c.topics.all()]
 	podcasts_ru = Podcast.objects.filter(language_id=2)
 	topics_ru = [(t.id, t.topic_name) for c in podcasts_ru for t in c.topics.all()]
-	return render(request, 'podcast/topics.html', {'topics_ar': set(topics_ar),'topics_chn': set(topics_chn), 'topics_ru': set(topics_ru) })
+	podcasts_br = Podcast.objects.filter(language_id=4)
+	topics_br = [(t.id, t.topic_name) for c in podcasts_br for t in c.topics.all()]
+	return render(request, 'podcast/topics.html', {'topics_ar': set(topics_ar),'topics_chn': set(topics_chn),
+												   'topics_ru': set(topics_ru), 'topics_br': set(topics_br) })
 
 
 class PodcastSearch(SearchView):
